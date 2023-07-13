@@ -6,7 +6,9 @@ description = "大别野「黑塔」机器人"
 authors = [
     {name = "MingxuanGame", email = "MingxuanGame@outlook.com"},
 ]
-dependencies = []
+dependencies = [
+    "herta-villa-sdk[fastapi]>=0.5.0",
+]
 requires-python = ">=3.8"
 license = {text = "MIT"}
 
