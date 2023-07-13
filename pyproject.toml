@@ -8,6 +8,8 @@ authors = [
 ]
 dependencies = [
     "herta-villa-sdk[fastapi]>=0.5.0",
+    "loguru>=0.7.0",
+    "pydantic[dotenv]<2.0",
 ]
 requires-python = ">=3.8"
 license = {text = "MIT"}
@@ -46,6 +48,8 @@ select = [
   "B",        # flake8-bugbear
   "ASYNC",    # flake8-async
 ]
+ignore = ["PLW0603", "TRY003"]
+allowed-confusables = ["，", "。", "（", "）", "；"]
 
 [tool.ruff.isort]
 force-sort-within-sections = true
