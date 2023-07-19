@@ -64,3 +64,19 @@ section-order = ["future", "standard-library", "first-party", "local-folder", "t
 [tool.pdm.scripts]
 lint = "ruff check ."
 fix = "ruff check --fix ."
+
+[tool.pyright]
+reportShadowedImports = false
+pythonVersion = "3.8"
+pythonPlatform = "All"
+executionEnvironments = [
+  { root = "./" },
+]
+
+[tool.black]
+extend-exclude = '''
+'''
+include = '\.pyi?$'
+line-length = 79
+skip-string-normalization = true
+target-version = ["py38", "py39", "py310", "py311"]
