@@ -1,13 +1,11 @@
 
 [project]
-name = "Herta-villa"
-version = "0.1.0"
 description = "大别野「黑塔」机器人"
 authors = [
     {name = "MingxuanGame", email = "MingxuanGame@outlook.com"},
 ]
 dependencies = [
-    "herta-villa-sdk[fastapi]>=0.6.3",
+    "herta-villa-sdk[fastapi]>=0.7.0",
     "loguru>=0.7.0",
     "pydantic[dotenv]<2.0",
 ]
