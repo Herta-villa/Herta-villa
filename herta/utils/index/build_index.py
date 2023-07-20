@@ -6,9 +6,9 @@ import json
 from typing import Any
 
 from herta.log import logger
-from utils.const import LANG
-from utils.index.index import Index
-from utils.resource import resource
+from herta.utils.const import LANG
+from herta.utils.index.index import Index
+from herta.utils.resource import resource, sr_res
 
 from aiohttp import ClientSession
 
@@ -34,12 +34,14 @@ class Builder:
             "从 Mar-7th/StarRailRes 拉取 index: "
             f"{self.category}.json (语言: {self.lang})",
         )
+        url = sr_res(f"/index_new/{self.lang}/{self.category}.json")
         async with ClientSession() as client:
             async with client.get(
-                "https://ghproxy.com/https://raw.githubusercontent.com/Mar-7th"
-                f"/StarRailRes/master/index_new/{self.lang}/{self.category}.json",
+                url,
             ) as resp:
+                logger.debug(f"URL: {url}")
                 self._raw_ = await resp.read()
+                logger.trace(f"Fetched: {self._raw_}")
                 self._raw = json.loads(self._raw_)
 
     def build_name_to_id_index(self) -> None:
@@ -48,8 +50,9 @@ class Builder:
         )
 
     def build_content(self) -> None:
+        assert self._raw_
         self.index.build_content(
-            self.raw,
+            self._raw_,
         )
 
     def check_out_of_date(self) -> bool:
@@ -70,6 +73,8 @@ class Builder:
             self.build_name_to_id_index()
             logger.info(f"构建 {self.category} 内容 index (语言: {self.lang})")
             self.build_content()
+        else:
+            logger.info(f"index {self.category} (语言: {self.lang}) 无变化")
 
     @staticmethod
     async def run_build(*categories: str) -> None:
@@ -77,7 +82,3 @@ class Builder:
             await asyncio.gather(
                 *[Builder(category, lang).build_index() for lang in LANG],
             )
-
-
-async def build_index() -> None:
-    await Builder.run_build("characters")

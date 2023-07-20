@@ -14,6 +14,7 @@ class Setting(BaseSettings):
 
     bot_id: str = ""
     bot_secret: str = ""
+    bot_pub_key: str = ""
 
     class Config:
         extra = Extra.allow

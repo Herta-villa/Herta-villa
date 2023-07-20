@@ -3,16 +3,17 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from utils.const import ENCODING
-from utils.resource import resource
+from herta.utils.const import ENCODING
+from herta.utils.resource import resource
 
 
 class Index:
     def __init__(self, category: str, lang: str = "cn") -> None:
         self.lang = lang
 
-        r = resource("index") / category
-        self.name_to_id_file = r / f"name_to_id_{self.lang}.json"
+        r = resource("index") / category / lang
+        r.mkdir(parents=True, exist_ok=True)
+        self.name_to_id_file = r / "name_to_id.json"
         self.content = r / "main.json"
 
         self._content: Any | None = None
@@ -38,8 +39,8 @@ class Index:
     def build_name_to_id_index(self, data: dict[str, str]) -> None:
         self.name_to_id_file.write_text(json.dumps(data), encoding=ENCODING)
 
-    def build_content(self, data: dict[str, str]) -> None:
-        self.content.write_text(json.dumps(data), encoding=ENCODING)
+    def build_content(self, data: bytes) -> None:
+        self.content.write_bytes(data)
 
     def __getitem__(self, key: str, id_: str | None = None) -> Any:
         if self._content is None:
