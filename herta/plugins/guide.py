@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import contextlib
-import re
 
 from herta.bot import get_bot
 from herta.exception import UploadFailed
@@ -14,6 +13,7 @@ from herta.utils.resource import sr_res
 from hertavilla import (
     Image,
     MessageChain,
+    RegexResult,
     SendMessageEvent,
     VillaBot,
     get_backend,
@@ -26,7 +26,6 @@ light_cone_cache = Cache("light_cone_guide")
 relic_sets_cache = Cache("relic_set_guide")
 
 bot = get_bot()
-regex = r"/星穹攻略 (.+)"
 
 
 @backend.on_startup
@@ -83,11 +82,9 @@ async def _get_guide(name: str, bot: VillaBot, villa_id: int) -> Image | None:
     return None
 
 
-@bot.regex(regex)
-async def _(event: SendMessageEvent, bot: VillaBot):
-    name = re.match(regex, event.message.plaintext)
-    if not name:
-        return
+@bot.regex(r"/星穹攻略 (.+)")
+async def _(event: SendMessageEvent, bot: VillaBot, match_result: RegexResult):
+    name = match_result.re_match[1]
     try:
         msg = (
             await _get_guide(name[1], bot, event.villa_id)

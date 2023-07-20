@@ -132,7 +132,7 @@ summary = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
 
 [[package]]
 name = "herta-villa-sdk"
-version = "0.7.0"
+version = "0.8.0"
 requires_python = ">=3.8"
 summary = "大别野「黑塔」Python SDK"
 dependencies = [
@@ -143,13 +143,13 @@ dependencies = [
 
 [[package]]
 name = "herta-villa-sdk"
-version = "0.7.0"
+version = "0.8.0"
 extras = ["fastapi"]
 requires_python = ">=3.8"
 summary = "大别野「黑塔」Python SDK"
 dependencies = [
     "fastapi>=0.100.0",
-    "herta-villa-sdk==0.7.0",
+    "herta-villa-sdk==0.8.0",
     "uvicorn>=0.22.0",
 ]
 
@@ -355,7 +355,7 @@ dependencies = [
 lock_version = "4.2"
 cross_platform = true
 groups = ["default", "dev"]
-content_hash = "sha256:d6e413774a4f5b772a6b08ce8d94848ed11dfe09e581e0cab0977eec9a5311ba"
+content_hash = "sha256:890359e04549098bee1f043f4f1c50cde341e8edc2c6272440734306e085bd7f"
 
 [metadata.files]
 "aiohttp 3.8.4" = [
@@ -659,9 +659,9 @@ content_hash = "sha256:d6e413774a4f5b772a6b08ce8d94848ed11dfe09e581e0cab0977eec9
     {url = "https://files.pythonhosted.org/packages/95/04/ff642e65ad6b90db43e668d70ffb6736436c7ce41fcc549f4e9472234127/h11-0.14.0-py3-none-any.whl", hash = "sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761"},
     {url = "https://files.pythonhosted.org/packages/f5/38/3af3d3633a34a3316095b39c8e8fb4853a28a536e55d347bd8d8e9a14b03/h11-0.14.0.tar.gz", hash = "sha256:8f19fbbe99e72420ff35c00b27a34cb9937e902a8b810e2c88300c6f0a3b699d"},
 ]
-"herta-villa-sdk 0.7.0" = [
-    {url = "https://files.pythonhosted.org/packages/70/54/fc59df375cfa4f7ef5ccc544eb163c03620359a53493b0596a47d05468c2/herta_villa_sdk-0.7.0-py3-none-any.whl", hash = "sha256:85bc597d641b6c36205e1d83a665f66c84d4fbc62704e7a3016c606991e9dceb"},
-    {url = "https://files.pythonhosted.org/packages/a8/35/a9ace09937c5dd7fcf77ef7196c6475c56f5d235edcc29cd9538bcf1ab2e/herta_villa_sdk-0.7.0.tar.gz", hash = "sha256:415e7bdce32edf53a47170a829a445b7476adeac9da874712e1c2572989a670c"},
+"herta-villa-sdk 0.8.0" = [
+    {url = "https://files.pythonhosted.org/packages/52/2e/22b8b41fc2fdebf3eace0c154ccfd26df355159563382f950f1690585e37/herta_villa_sdk-0.8.0-py3-none-any.whl", hash = "sha256:c8c33c650bc4803f72adbb7aa3f80747ffcd01e6bac7a7414f8d8ddbc2eb0014"},
+    {url = "https://files.pythonhosted.org/packages/cc/aa/04f0a61753d7004f5935db593cf27df94a097c41e1e1683276c9bae9af21/herta_villa_sdk-0.8.0.tar.gz", hash = "sha256:f1898708861e45016aa5297bbecd74f7dab00c675ab0cedf706b0fbbb9a31bc1"},
 ]
 "identify 2.5.24" = [
     {url = "https://files.pythonhosted.org/packages/4f/fd/2c46fba2bc032ba4c970bb8de59d25187087d7138a0ebf7c1dcc91d94f01/identify-2.5.24-py2.py3-none-any.whl", hash = "sha256:986dbfb38b1140e763e413e6feb44cd731faf72d1909543178aa79b0e258265d"},
