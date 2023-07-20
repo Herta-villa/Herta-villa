@@ -3,6 +3,7 @@ from __future__ import annotations
 import re
 
 from herta.bot import get_bot
+from herta.utils.cache import Cache
 from herta.utils.index.build_index import Builder
 from herta.utils.index.index import Index
 from herta.utils.resource import sr_res
@@ -16,7 +17,7 @@ from hertavilla import (
 )
 
 backend = get_backend()
-cache_image: dict[str, str] = {}
+char_cache = Cache("character_guide")
 
 
 bot = get_bot()
@@ -43,12 +44,12 @@ async def _(event: SendMessageEvent, bot: VillaBot):
         chain.append("没找到角色攻略，是不是你名称输错了呢~")
     else:
         path = index["guide_overview"][0]  # Nwflower
-        if cache_image.get(path):
-            img = cache_image[path]
+        if char_cache[path]:
+            img = char_cache[path]
         else:
-            img = cache_image[path] = await bot.transfer_image(
+            img = char_cache[path] = await bot.transfer_image(
                 event.villa_id,
-                sr_res(path),
+                sr_res(f"/{path}"),
             )
-        chain.append(Image(img))
+        chain.append(Image(img, width=1920, height=3000))
     await bot.send(event.villa_id, event.room_id, chain)
